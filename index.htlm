@@ -4,502 +4,76 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Top Sales — Elan Platforması</title>
-  <meta name="description" content="Top Sales: Sadə, sürətli və mobil uyumlu elan platforması."/>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🛒</text></svg>">
+  <meta name="description" content="Top Sales: Sadə, sürətli və mobil uyumlu elan platforması.">
   <style>
-    :root{
-      --bg:#0b0c10; --card:#12131a; --muted:#8b93a7; --text:#f1f5f9; --brand:#6ee7b7; --brand-2:#22d3ee; --danger:#ef4444;
-      --ring: 0 0 0 2px rgba(34,211,238,.35);
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(180deg,#0b0c10 0%, #0b1220 60%, #0b0c10 100%);color:var(--text)}
-    a{color:inherit}
-    .container{max-width:1200px;margin:0 auto;padding:16px}
-    header{position:sticky;top:0;z-index:40;background:rgba(11,14,24,.7);backdrop-filter:saturate(160%) blur(10px);border-bottom:1px solid rgba(255,255,255,.08)}
-    .topbar{display:flex;gap:12px;align-items:center;justify-content:space-between;padding:10px 16px}
-    .brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.3px}
-    .brand-badge{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--brand),var(--brand-2));display:grid;place-items:center;color:#062a2f;font-weight:900}
-    .searchbar{display:flex;gap:8px;align-items:center;width:100%;max-width:760px}
-    .input, select, textarea{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);color:var(--text);border-radius:12px;padding:12px 12px;outline:none;transition:.2s}
-    .input:focus, select:focus, textarea:focus{box-shadow:var(--ring);border-color:#22d3ee}
-    .btn{border:none;border-radius:12px;padding:12px 14px;font-weight:700;cursor:pointer;transition:.2s;display:inline-flex;align-items:center;gap:8px}
-    .btn-primary{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#062a2f}
-    .btn-ghost{background:rgba(255,255,255,.06);color:var(--text);border:1px solid rgba(255,255,255,.08)}
-    .btn-danger{background:var(--danger);color:white}
-    .controls{display:flex;gap:8px;flex-wrap:wrap}
-    .chips{display:flex;gap:8px;flex-wrap:wrap}
-    .chip{padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);cursor:pointer}
-    .chip.active{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#062a2f;border-color:transparent}
-
-    main{padding:16px}
-    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
-    .sidebar{grid-column:span 3;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:14px;position:sticky;top:76px;height:fit-content}
-    .content{grid-column:span 9}
-    @media (max-width: 980px){.sidebar{grid-column:1/-1;order:2}.content{grid-column:1/-1;order:1}}
-
-    .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    :root{--bg:#0b0c10;--card:#12131a;--muted:#8b93a7;--text:#f1f5f9;--brand:#6ee7b7;--brand2:#22d3ee;--danger:#ef4444;--ring:0 0 0 2px rgba(34,211,238,.35)}
+    *{box-sizing:border-box} html,body{height:100%}
+    body{margin:0;font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;background:#0b0c10;color:var(--text)}
+    header{position:sticky;top:0;z-index:10;background:rgba(11,14,24,.7);backdrop-filter:blur(8px);border-bottom:1px solid rgba(255,255,255,.08)}
+    .container{max-width:1100px;margin:0 auto;padding:14px}
+    .row{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+    .brand{display:flex;gap:10px;align-items:center;font-weight:800}
+    .badge{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--brand),var(--brand2));display:grid;place-items:center;color:#062a2f;font-weight:900}
+    .input,select,textarea{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);color:var(--text);border-radius:12px;padding:10px 12px;outline:none}
+    .input:focus,select:focus,textarea:focus{box-shadow:var(--ring);border-color:#22d3ee}
+    .btn{border:none;border-radius:12px;padding:10px 12px;font-weight:700;cursor:pointer;display:inline-flex;gap:6px;align-items:center}
+    .btn-primary{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#062a2f}
+    .btn-ghost{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);color:var(--text)}
+    .btn-danger{background:var(--danger);color:#fff}
+    main{padding:14px}
+    .grid{display:grid;grid-template-columns:280px 1fr;gap:14px}
+    @media (max-width:900px){.grid{grid-template-columns:1fr}}
+    .side{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:12px;height:fit-content;position:sticky;top:80px}
+    .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
     @media (max-width:1100px){.cards{grid-template-columns:repeat(3,1fr)}}
-    @media (max-width:780px){.cards{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:760px){.cards{grid-template-columns:repeat(2,1fr)}}
     @media (max-width:520px){.cards{grid-template-columns:1fr}}
-
-    .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:18px;overflow:hidden;display:flex;flex-direction:column}
-    .card .thumb{position:relative;aspect-ratio:16/11;background:#0f172a;overflow:hidden}
-    .card img{width:100%;height:100%;object-fit:cover;display:block}
-    .badge{position:absolute;left:10px;top:10px;background:rgba(0,0,0,.6);padding:6px 10px;border-radius:999px;font-size:12px}
-    .fav{position:absolute;right:10px;top:10px;background:rgba(0,0,0,.6);border:none;border-radius:999px;width:36px;height:36px;color:#ffd7d7;display:grid;place-items:center;cursor:pointer}
-    .card-body{padding:12px 14px;display:flex;flex-direction:column;gap:8px}
-    .title{font-weight:800;line-height:1.2}
+    .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
+    .thumb{position:relative;aspect-ratio:16/11;background:#0f172a}
+    .thumb img{width:100%;height:100%;object-fit:cover}
+    .pill{position:absolute;left:8px;top:8px;background:rgba(0,0,0,.6);padding:6px 9px;border-radius:999px;font-size:12px}
+    .fav{position:absolute;right:8px;top:8px;background:rgba(0,0,0,.6);border:none;border-radius:999px;width:34px;height:34px;color:#ffd7d7;cursor:pointer}
+    .body{padding:10px 12px;display:flex;flex-direction:column;gap:6px}
+    .title{font-weight:800}
     .muted{color:var(--muted);font-size:14px}
-    .price{font-weight:900;font-size:18px}
-
-    .toolbar{display:flex;gap:8px;align-items:center;justify-content:space-between;margin:8px 0 16px 0;flex-wrap:wrap}
-    .divider{height:1px;background:rgba(255,255,255,.08);margin:12px 0}
-
-    /* Modal */
-    dialog{border:none;border-radius:18px;background:var(--card);color:var(--text);padding:0;max-width:840px;width:92%}
+    .price{font-weight:900}
+    .toolbar{display:flex;gap:8px;justify-content:space-between;align-items:center;flex-wrap:wrap;margin:6px 0 12px}
+    .chips{display:flex;gap:8px;flex-wrap:wrap}
+    .chip{padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);cursor:pointer}
+    .chip.active{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#062a2f;border-color:transparent}
+    dialog{border:none;border-radius:16px;background:var(--card);color:var(--text);padding:0;max-width:800px;width:92%}
     dialog::backdrop{background:rgba(0,0,0,.5);backdrop-filter:blur(2px)}
-    .modal-header{padding:16px 18px;border-bottom:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;align-items:center}
-    .modal-body{padding:16px 18px}
-    .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .modal-h{padding:12px 14px;border-bottom:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;align-items:center}
+    .modal-b{padding:14px}
+    .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
     @media (max-width:720px){.two{grid-template-columns:1fr}}
-
-    .preview{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-    .preview div{aspect-ratio:1;border-radius:12px;overflow:hidden;border:1px dashed rgba(255,255,255,.15);display:grid;place-items:center}
-    .preview img{width:100%;height:100%;object-fit:cover}
-
-    footer{padding:28px 16px;color:var(--muted);text-align:center;border-top:1px solid rgba(255,255,255,.08)}
-
-    .pill{padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);font-size:12px}
-    .hidden{display:none}
+    .preview{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:8px}
+    .preview div{aspect-ratio:1;border:1px dashed rgba(255,255,255,.15);border-radius:12px;overflow:hidden;display:grid;place-items:center}
+    footer{padding:18px;text-align:center;color:var(--muted);border-top:1px solid rgba(255,255,255,.08)}
   </style>
 </head>
 <body>
-  <header>
-    <div class="topbar container">
-      <div class="brand" aria-label="Top Sales brendi">
-        <div class="brand-badge" aria-hidden="true">TS</div>
-        <div>
-          <div style="font-size:18px;line-height:1">Top Sales</div>
-          <div style="font-size:12px;color:var(--muted)">Elanlarını burada paylaş</div>
-        </div>
-      </div>
-      <form id="searchForm" class="searchbar" role="search">
-        <input id="q" class="input" type="search" placeholder="Nə axtarırsan? (məs: iPhone 13, kirayə, uşaq velosipedi)" aria-label="Axtarış"/>
-        <select id="categoryFilter" aria-label="Kateqoriya">
-          <option value="">Bütün kateqoriyalar</option>
-          <option>Telefon & Elektronika</option>
-          <option>Daşınmaz əmlak</option>
-          <option>Nəqliyyat</option>
-          <option>Geyim & Aksesuar</option>
-          <option>Ev & Bağ</option>
-          <option>Uşaq Dünyası</option>
-          <option>Hobbi & İdman</option>
-          <option>Digər</option>
-        </select>
-        <select id="sort" aria-label="Sıralama">
-          <option value="newest">Ən yenilər</option>
-          <option value="price-asc">Qiymət: Aşağıdan Yuxarı</option>
-          <option value="price-desc">Qiymət: Yuxarıdan Aşağı</option>
-          <option value="title-asc">Ad: A→Z</option>
-        </select>
-        <button class="btn btn-primary" type="submit" title="Axtar"><span>🔎</span> Axtar</button>
-      </form>
-      <div class="controls">
-        <button id="toggleTheme" class="btn btn-ghost" title="Tünd/Açıq rejim">🌓</button>
-        <button id="openCreate" class="btn btn-primary" title="Elan əlavə et">➕ Elan</button>
-      </div>
-    </div>
-  </header>
-
-  <main class="container">
-    <div class="toolbar">
-      <div class="chips" id="quickCats" aria-label="Sürətli kateqoriyalar">
-        <span class="chip" data-cat="Telefon & Elektronika">Telefon</span>
-        <span class="chip" data-cat="Daşınmaz əmlak">Əmlak</span>
-        <span class="chip" data-cat="Nəqliyyat">Nəqliyyat</span>
-        <span class="chip" data-cat="Geyim & Aksesuar">Geyim</span>
-        <span class="chip" data-cat="Ev & Bağ">Ev & Bağ</span>
-        <span class="chip" data-cat="Uşaq Dünyası">Uşaq</span>
-        <span class="chip" data-cat="Hobbi & İdman">Hobbi</span>
-      </div>
-      <div class="controls">
-        <button id="loadDemo" class="btn btn-ghost" title="Demo elanları yüklə">📦 Demo</button>
-        <button id="exportBtn" class="btn btn-ghost" title="JSON ixrac">⬇️ İxrac</button>
-        <label class="btn btn-ghost" title="JSON idxal">
-          ⬆️ İdxal <input id="importInput" type="file" accept="application/json" class="hidden" />
-        </label>
-        <button id="clearAll" class="btn btn-danger" title="Bütün elanları sil">🗑️ Təmizlə</button>
-      </div>
-    </div>
-
-    <div class="grid">
-      <aside class="sidebar" aria-label="Filtrlər">
-        <h3 style="margin:6px 0 12px 0">Filtrlər</h3>
-        <label class="muted">Maks. qiymət (AZN)</label>
-        <input id="maxPrice" class="input" type="number" min="0" placeholder="məs: 500" />
-        <div style="height:8px"></div>
-        <label class="muted">Şəhər/yer</label>
-        <input id="locationFilter" class="input" placeholder="məs: Bakı" />
-        <div style="height:8px"></div>
-        <label class="muted">Vəziyyət</label>
-        <select id="conditionFilter">
-          <option value="">Fərq etmir</option>
-          <option>Yeni</option>
-          <option>İşlənmiş</option>
-        </select>
-        <div class="divider"></div>
-        <div class="pill">🔔 Məsləhət: axtarışdan sonra Enter</div>
-      </aside>
-
-      <section class="content">
-        <div id="stats" class="muted" style="margin-bottom:8px">0 elan tapıldı</div>
-        <div id="cards" class="cards" aria-live="polite"></div>
-      </section>
-    </div>
-  </main>
-
-  <footer>
-    © <span id="year"></span> Top Sales — Sadə elan platforması. Yerli yaddaşdan (LocalStorage) istifadə edir.
-  </footer>
-
-  <!-- Create/Edit Modal -->
-  <dialog id="createModal" aria-labelledby="modalTitle">
-    <form method="dialog" id="adForm">
-      <div class="modal-header">
-        <div>
-          <div id="modalTitle" class="title">Yeni elan</div>
-          <div class="muted">Məlumatları doldur və dərc et</div>
-        </div>
-        <button type="button" id="closeModal" class="btn btn-ghost">✖</button>
-      </div>
-      <div class="modal-body">
-        <div class="two">
-          <div>
-            <label>Başlıq</label>
-            <input class="input" name="title" required placeholder="məs: iPhone 13 128GB" />
-          </div>
-          <div>
-            <label>Qiymət (AZN)</label>
-            <input class="input" name="price" type="number" min="0" step="1" required placeholder="məs: 750" />
-          </div>
-          <div>
-            <label>Kateqoriya</label>
-            <select class="input" name="category" required>
-              <option disabled selected value="">Seçin</option>
-              <option>Telefon & Elektronika</option>
-              <option>Daşınmaz əmlak</option>
-              <option>Nəqliyyat</option>
-              <option>Geyim & Aksesuar</option>
-              <option>Ev & Bağ</option>
-              <option>Uşaq Dünyası</option>
-              <option>Hobbi & İdman</option>
-              <option>Digər</option>
-            </select>
-          </div>
-          <div>
-            <label>Şəhər/yer</label>
-            <input class="input" name="location" required placeholder="məs: Bakı, Nizami" />
-          </div>
-        </div>
-        <div style="height:8px"></div>
-        <div>
-          <label>Vəziyyət</label>
-          <select class="input" name="condition" required>
-            <option>Yeni</option>
-            <option>İşlənmiş</option>
-          </select>
-        </div>
-        <div style="height:8px"></div>
-        <div>
-          <label>Təsvir</label>
-          <textarea class="input" name="description" rows="4" placeholder="Ətraflı məlumat yazın" required></textarea>
-        </div>
-        <div style="height:8px"></div>
-        <div>
-          <label>Əlaqə (telefon və ya e-poçt)</label>
-          <input class="input" name="contact" placeholder="məs: 0501234567" required />
-        </div>
-        <div style="height:12px"></div>
-        <div>
-          <label>Şəkillər (max 8)</label>
-          <input id="imagesInput" class="input" type="file" accept="image/*" multiple />
-          <div class="preview" id="imgPreview" style="margin-top:8px"></div>
-        </div>
-        <div class="divider"></div>
-        <div style="display:flex;justify-content:flex-end;gap:8px">
-          <button type="button" class="btn btn-ghost" id="resetForm">Təmizlə</button>
-          <button type="submit" class="btn btn-primary">Dərc et</button>
-        </div>
-      </div>
+<header>
+  <div class="container row">
+    <div class="brand"><div class="badge">TS</div><div>Top Sales</div></div>
+    <form id="searchForm" class="row" style="flex:1;max-width:760px">
+      <input id="q" class="input" style="flex:1" placeholder="Nə axtarırsan? (məs: iPhone 13)" />
+      <select id="categoryFilter">
+        <option value="">Bütün</option><option>Telefon & Elektronika</option><option>Daşınmaz əmlak</option>
+        <option>Nəqliyyat</option><option>Geyim & Aksesuar</option><option>Ev & Bağ</option>
+        <option>Uşaq Dünyası</option><option>Hobbi & İdman</option><option>Digər</option>
+      </select>
+      <select id="sort"><option value="newest">Ən yenilər</option><option value="price-asc">Qiymət ⬆️</option><option value="price-desc">Qiymət ⬇️</option><option value="title-asc">Ad A→Z</option></select>
+      <button class="btn btn-primary" type="submit">🔎 Axtar</button>
     </form>
-  </dialog>
+    <div class="row">
+      <button id="openCreate" class="btn btn-primary">➕ Elan</button>
+      <button id="loadDemo" class="btn btn-ghost">📦 Demo</button>
+    </div>
+  </div>
+</header>
 
-  <template id="cardTpl">
-    <article class="card">
-      <div class="thumb">
-        <span class="badge">Yeni</span>
-        <button class="fav" title="Seçilmişlərə əlavə et">♡</button>
-        <img alt="Elan şəkli" />
-      </div>
-      <div class="card-body">
-        <div class="title"></div>
-        <div class="muted meta"></div>
-        <div class="price"></div>
-        <div class="muted desc"></div>
-        <div style="display:flex;gap:6px;justify-content:space-between;align-items:center">
-          <div class="muted views"></div>
-          <div style="display:flex;gap:6px">
-            <button class="btn btn-ghost btn-sm call">📞 Əlaqə</button>
-            <button class="btn btn-ghost btn-sm edit">✏️</button>
-            <button class="btn btn-danger btn-sm del">🗑️</button>
-          </div>
-        </div>
-      </div>
-    </article>
-  </template>
-
-  <script>
-  // ===== Utilities =====
-  const $ = (q, el=document) => el.querySelector(q);
-  const $$ = (q, el=document) => Array.from(el.querySelectorAll(q));
-  const formatPrice = (n) => new Intl.NumberFormat('az-Latn-AZ',{style:'currency',currency:'AZN',maximumFractionDigits:0}).format(n);
-  const uid = () => Math.random().toString(36).slice(2) + Date.now().toString(36);
-
-  // ===== State =====
-  const STORE_KEY = 'topsales_listings_v1';
-  const THEME_KEY = 'topsales_theme';
-  let listings = JSON.parse(localStorage.getItem(STORE_KEY) || '[]');
-  let editingId = null;
-
-  // ===== Theme =====
-  const applyTheme = (mode) => {
-    document.documentElement.classList.toggle('light', mode === 'light');
-    localStorage.setItem(THEME_KEY, mode);
-  }
-  $('#toggleTheme').addEventListener('click', ()=>{
-    const cur = localStorage.getItem(THEME_KEY) || 'dark';
-    applyTheme(cur==='dark'?'light':'dark');
-  });
-  // initial
-  applyTheme(localStorage.getItem(THEME_KEY) || 'dark');
-
-  // ===== Footer year =====
-  $('#year').textContent = new Date().getFullYear();
-
-  // ===== Modal controls =====
-  const modal = $('#createModal');
-  $('#openCreate').addEventListener('click', ()=>{ openCreate(); });
-  $('#closeModal').addEventListener('click', ()=>{ modal.close(); resetForm(); editingId=null;});
-
-  function openCreate(data){
-    $('#modalTitle').textContent = data? 'Elanı redaktə et' : 'Yeni elan';
-    modal.showModal();
-    if(data){
-      const f = $('#adForm');
-      f.title.value = data.title;
-      f.price.value = data.price;
-      f.category.value = data.category;
-      f.location.value = data.location;
-      f.condition.value = data.condition;
-      f.description.value = data.description;
-      f.contact.value = data.contact;
-      // preview existing images
-      renderPreview(data.images || []);
-    }
-  }
-
-  function resetForm(){
-    const f = $('#adForm'); f.reset(); $('#imgPreview').innerHTML=''; $('#imagesInput').value='';
-  }
-  $('#resetForm').addEventListener('click', resetForm);
-
-  // ===== Image preview & read =====
-  let selectedImages = [];
-  $('#imagesInput').addEventListener('change', async (e)=>{
-    const files = Array.from(e.target.files || []).slice(0,8);
-    selectedImages = await Promise.all(files.map(file => fileToDataUrl(file)));
-    renderPreview(selectedImages);
-  });
-  function renderPreview(images){
-    const box = $('#imgPreview'); box.innerHTML='';
-    (images||[]).forEach(src=>{
-      const d = document.createElement('div');
-      const img = new Image(); img.src = src; d.appendChild(img); box.appendChild(d);
-    });
-  }
-  function fileToDataUrl(file){
-    return new Promise((res,rej)=>{ const r=new FileReader(); r.onload=()=>res(r.result); r.onerror=rej; r.readAsDataURL(file); });
-  }
-
-  // ===== Create / Update listing =====
-  $('#adForm').addEventListener('submit', (e)=>{
-    e.preventDefault();
-    const f = e.target;
-    const data = {
-      id: editingId || uid(),
-      title: f.title.value.trim(),
-      price: Number(f.price.value||0),
-      category: f.category.value,
-      location: f.location.value.trim(),
-      condition: f.condition.value,
-      description: f.description.value.trim(),
-      contact: f.contact.value.trim(),
-      images: selectedImages.length? selectedImages : (editingId? (listings.find(x=>x.id===editingId)?.images||[]) : []),
-      createdAt: editingId? (listings.find(x=>x.id===editingId)?.createdAt) : Date.now(),
-      views: editingId? (listings.find(x=>x.id===editingId)?.views||0) : 0
-    };
-    if(!data.title || !data.price || !data.category){ alert('Zəhmət olmasa bütün tələb olunan sahələri doldurun.'); return; }
-
-    if(editingId){
-      listings = listings.map(item => item.id===editingId? {...item, ...data}: item);
-    } else {
-      listings.unshift(data);
-    }
-    localStorage.setItem(STORE_KEY, JSON.stringify(listings));
-    modal.close(); resetForm(); editingId=null; selectedImages=[]; render();
-  });
-
-  // ===== Searching & filtering =====
-  $('#searchForm').addEventListener('submit', (e)=>{ e.preventDefault(); render(); });
-  $('#categoryFilter').addEventListener('change', render);
-  $('#sort').addEventListener('change', render);
-  $('#maxPrice').addEventListener('input', debounce(render,300));
-  $('#locationFilter').addEventListener('input', debounce(render,300));
-  $('#conditionFilter').addEventListener('change', render);
-  $('#quickCats').addEventListener('click', (e)=>{
-    if(!e.target.classList.contains('chip')) return;
-    const cat = e.target.getAttribute('data-cat');
-    $('#categoryFilter').value = cat; render();
-    $$('#quickCats .chip').forEach(c=>c.classList.toggle('active', c===e.target));
-  });
-
-  function getFilters(){
-    const q = $('#q').value.toLowerCase().trim();
-    const cat = $('#categoryFilter').value;
-    const sort = $('#sort').value;
-    const maxP = Number($('#maxPrice').value||0);
-    const loc = $('#locationFilter').value.toLowerCase().trim();
-    const cond = $('#conditionFilter').value;
-    let data = [...listings];
-    if(q){ data = data.filter(x => (x.title + ' ' + x.description).toLowerCase().includes(q)); }
-    if(cat){ data = data.filter(x => x.category===cat); }
-    if(maxP>0){ data = data.filter(x => x.price <= maxP); }
-    if(loc){ data = data.filter(x => x.location.toLowerCase().includes(loc)); }
-    if(cond){ data = data.filter(x => x.condition===cond); }
-    // sort
-    if(sort==='price-asc') data.sort((a,b)=>a.price-b.price);
-    else if(sort==='price-desc') data.sort((a,b)=>b.price-a.price);
-    else if(sort==='title-asc') data.sort((a,b)=>a.title.localeCompare(b.title));
-    else data.sort((a,b)=>b.createdAt-a.createdAt);
-
-    return data;
-  }
-
-  function render(){
-    const data = getFilters();
-    $('#stats').textContent = `${data.length} elan tapıldı`;
-    const wrap = $('#cards'); wrap.innerHTML='';
-    if(!data.length){ wrap.innerHTML = `<div class="pill">Heç nə tapılmadı. Yeni elan əlavə et! ➕</div>`; return; }
-
-    const tpl = $('#cardTpl');
-    data.forEach(item=>{
-      const node = tpl.content.cloneNode(true);
-      const card = node.querySelector('.card');
-      const img = node.querySelector('img');
-      img.src = item.images?.[0] || placeholderFromTitle(item.title);
-      node.querySelector('.badge').textContent = item.condition || 'Elan';
-      node.querySelector('.title').textContent = item.title;
-      node.querySelector('.meta').textContent = `${item.location} • ${new Date(item.createdAt).toLocaleDateString('az-Latn-AZ')}`;
-      node.querySelector('.price').textContent = formatPrice(item.price);
-      node.querySelector('.desc').textContent = item.description.slice(0,80) + (item.description.length>80?'…':'');
-      node.querySelector('.views').textContent = `👁️ ${item.views||0}`;
-
-      // Favorite
-      const favBtn = node.querySelector('.fav');
-      favBtn.textContent = (item.fav?'❤️':'♡');
-      favBtn.addEventListener('click', (e)=>{ e.stopPropagation(); item.fav=!item.fav; save(); render(); });
-
-      // Call
-      node.querySelector('.call').addEventListener('click', (e)=>{ e.stopPropagation(); 
-        if(item.contact.startsWith('0')||item.contact.startsWith('+')){
-          window.location.href = `tel:${item.contact}`;
-        } else if(item.contact.includes('@')){
-          window.location.href = `mailto:${item.contact}?subject=Top%20Sales%20Elan%20(${encodeURIComponent(item.title)})`;
-        } else { alert(`Əlaqə: ${item.contact}`); }
-      });
-
-      // Edit
-      node.querySelector('.edit').addEventListener('click', (e)=>{ e.stopPropagation(); editingId=item.id; openCreate(item); selectedImages = item.images || []; });
-      // Delete
-      node.querySelector('.del').addEventListener('click', (e)=>{ e.stopPropagation(); if(confirm('Bu elanı silmək istəyirsən?')){ listings = listings.filter(x=>x.id!==item.id); save(); render(); }});
-
-      // Open: increase views
-      card.addEventListener('click', ()=>{ item.views=(item.views||0)+1; save(); quickView(item); });
-
-      wrap.appendChild(node);
-    });
-  }
-
-  function placeholderFromTitle(title){
-    const t = encodeURIComponent((title||'Elan').slice(0,12));
-    // Data URL SVG placeholder
-    const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='600' height='400'>\
-      <defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop stop-color='%236ee7b7' offset='0'/><stop stop-color='%2322d3ee' offset='1'/></linearGradient></defs>\
-      <rect width='600' height='400' fill='url(%23g)'/>\
-      <text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='38' font-family='Inter,Segoe UI,Arial' fill='black' opacity='.6'>${t}</text>\
-    </svg>`;
-    return 'data:image/svg+xml;utf8,' + svg;
-  }
-
-  function quickView(item){
-    const msg = `${item.title}\n${formatPrice(item.price)} — ${item.location}\n\n${item.description}\n\nƏlaqə: ${item.contact}`;
-    if(confirm(msg + "\n\nElanı redaktə etmək istəyirsən?")){
-      editingId=item.id; openCreate(item);
-    }
-  }
-
-  function save(){ localStorage.setItem(STORE_KEY, JSON.stringify(listings)); }
-
-  // ===== Demo data / import export / clear =====
-  $('#loadDemo').addEventListener('click', ()=>{
-    if(!confirm('Demo elanları yüklənsin? Mövcud elanlara əlavə olunacaq.')) return;
-    const now = Date.now();
-    const demo = [
-      {id:uid(), title:'iPhone 13 128GB', price:780, category:'Telefon & Elektronika', location:'Bakı', condition:'İşlənmiş', description:'Yaxşı vəziyyətdədir, Face ID işləyir. Adapter + kabel hədiyyə.', contact:'+994501234567', images:[], createdAt: now-86400000*1, views:5},
-      {id:uid(), title:'Kirayə 2 otaqlı, Xətai', price:450, category:'Daşınmaz əmlak', location:'Bakı, Xətai', condition:'İşlənmiş', description:'Metroya 5 dəq, əşyalıdır. Kommunal daxil deyil.', contact:'elan@example.com', images:[], createdAt: now-86400000*3, views:10},
-      {id:uid(), title:'Hyundai Elantra 2014', price:16500, category:'Nəqliyyat', location:'Sumqayıt', condition:'İşlənmiş', description:'1.8 benzin, avtomat, xərci yoxdur. Barter mümkündür.', contact:'+994707777777', images:[], createdAt: now-86400000*8, views:3},
-      {id:uid(), title:'Balkon üçün oturacaq', price:55, category:'Ev & Bağ', location:'Gəncə', condition:'Yeni', description:'Taxta, dəmir ayaqlı, çox rahatdır.', contact:'+994551112233', images:[], createdAt: now-86400000*12, views:1},
-    ];
-    listings = demo.concat(listings);
-    save(); render();
-  });
-
-  $('#exportBtn').addEventListener('click', ()=>{
-    const blob = new Blob([JSON.stringify(listings,null,2)], {type:'application/json'});
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url; a.download = 'topsales-data.json'; a.click(); URL.revokeObjectURL(url);
-  });
-
-  $('#importInput').addEventListener('change', async (e)=>{
-    const file = e.target.files?.[0]; if(!file) return;
-    const text = await file.text();
-    try{ const data = JSON.parse(text); if(!Array.isArray(data)) throw new Error('Format səhvdir');
-      listings = data; save(); render(); alert('Uğurla idxal edildi!');
-    }catch(err){ alert('JSON oxunmadı: ' + err.message); }
-  });
-
-  $('#clearAll').addEventListener('click', ()=>{
-    if(confirm('Bütün elanlar silinsin?')){ listings = []; save(); render(); }
-  });
-
-  // ===== Initial render =====
-  render();
-
-  // ===== Debounce helper =====
-  function debounce(fn, ms){ let t; return (...a)=>{ clearTimeout(t); t=setTimeout(()=>fn.apply(this,a), ms); } }
-
-  </script>
-</body>
-</html>
+<main class="container">
+  <div class="toolbar">
+    <div class="chips" id="quickCats">
+      <span class="chip" data-cat="Telefon
